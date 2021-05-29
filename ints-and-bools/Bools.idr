@@ -64,6 +64,8 @@ rule' s = terminal ("Expected " ++ (show s))
 wh : Rule ()
 wh = rule' Whitespace
 
+-- This evaluates more of the tree than it needs to.
+-- TODO: Skip "then" part if test is false, and skip "else" part if test is true
 expr : Rule Bool
 expr = 
   (do
