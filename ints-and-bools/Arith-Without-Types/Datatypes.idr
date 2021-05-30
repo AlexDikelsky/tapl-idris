@@ -35,7 +35,7 @@ export
 Show AST where
   show Truth = "true"
   show Falsehood = "false"
-  show (If a b c) = "if " ++ (show a) ++ " then " ++ (show b) ++ " else " ++ (show c)
+  show (If a b c) = "(if " ++ (show a) ++ " then " ++ (show b) ++ " else " ++ (show c) ++ ")"
   show Zero = "0"
   show (Succ a) = "(succ " ++ (show a) ++ ")"
   show (Pred a) = "(pred " ++ (show a) ++ ")"

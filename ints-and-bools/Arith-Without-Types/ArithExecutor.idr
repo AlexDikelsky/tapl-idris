@@ -48,7 +48,11 @@ eval1 (Pred (Succ nv)) =
   if (is_nv nv) then
     Right nv
   else
-    Right (Pred ((fromEither . eval1) (Succ nv)))
+    case eval1 nv of
+      --  If nv is a normal form, then return that
+      Left  adt => Left  $ Pred (Succ adt)
+      -- Otherwise, evaluate it
+      Right adt => Right $ Pred (Succ adt)
 
 eval1 (Pred t) = 
   case eval1 t of

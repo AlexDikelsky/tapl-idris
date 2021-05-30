@@ -37,4 +37,10 @@ main = do
   putStrLn $ show $ runProgram "succ (if false then 0 else (succ 0))"
   putStrLn $ show $ runProgram "succ (if false then false else (succ 0))"
   putStrLn $ show $ runProgram "succ (if true then false else (succ 0))"
+  putStrLn $ show $ runProgram "pred pred pred pred succ succ pred succ pred pred pred succ succ succ pred pred pred succ pred succ succ pred pred succ succ pred pred succ succ succ succ succ pred succ succ succ pred succ pred pred pred succ succ succ pred succ succ succ succ pred pred pred succ succ succ pred succ succ succ succ succ pred succ pred succ succ succ pred pred succ succ succ pred pred succ succ succ pred succ succ pred pred succ pred succ succ pred succ pred pred succ pred succ succ succ succ succ pred succ succ 0"
+  putStrLn $ show $ runProgram "(if (if (iszero (iszero 0)) then (iszero (if 0 then 0 else 0)) else 0) then (iszero (if (pred 0) then (if 0 then 0 else 0) else 0)) else 0)"
+
+  -- This should reduce to itself because pred succ only works when the arg is numeric
+  putStrLn $ show $ runProgram "pred succ true"
+
   putStrLn "Done"
