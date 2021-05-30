@@ -65,29 +65,34 @@ wh : Rule ()
 wh = rule' Whitespace
 
 -- This evaluates more of the tree than it needs to.
--- TODO: Skip "then" part if test is false, and skip "else" part if test is true
-expr : Rule Bool
-expr = 
-  (do
-    rule' If
-    wh
-    test <- expr
-    wh
-    rule' Then
-    wh
-    was_true <- expr
-    wh
-    rule' Else
-    wh
-    was_false <- expr
-    pure (if test then was_true else was_false)) 
-  <|> boolLiteral
-  <|> (do
-    rule' OParen
-    e <- expr
-    rule' CParen
-    pure e)
-
+-- Could do: Skip "then" part if test is false, and skip "else" part if test is true
+mutual
+  ifEvaluation : Rule Bool
+  ifEvaluation = (do
+      rule' If
+      wh
+      test <- expr
+      wh
+      rule' Then
+      wh
+      was_true <- expr
+      wh
+      rule' Else
+      wh
+      was_false <- expr
+      pure (if test then was_true else was_false))
+  
+  parenEvaluation : Rule Bool
+  parenEvaluation = (do
+      rule' OParen
+      e <- expr
+      rule' CParen
+      pure e)
+  
+  expr : Rule Bool
+  expr = ifEvaluation
+    <|> boolLiteral
+    <|> parenEvaluation
 
 export
 Show (ParseError token) where 
