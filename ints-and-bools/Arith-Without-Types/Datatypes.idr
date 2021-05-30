@@ -11,7 +11,7 @@ data IntFuncInnerToken : Type where
   PredToken   : IntFuncInnerToken
   IsZeroToken : IntFuncInnerToken
 
-public export
+export
 Show IntFuncInnerToken where
   show SuccToken = "SuccToken"
   show PredToken = "PredToken"
@@ -31,7 +31,7 @@ data AST =
 
 %runElab derive "AST" [Generic, Eq]
 
-public export
+export
 Show AST where
   show Truth = "true"
   show Falsehood = "false"
@@ -55,7 +55,7 @@ data ExpressionToken =
 
 %runElab derive "ExpressionToken" [Generic, Eq]
 
-public export
+export
 Show ExpressionToken where
   show (Boolean x) = "number " ++ show x
   show IfToken = "IfToken"

@@ -113,7 +113,7 @@ mutual
     tokenEquals ZeroToken
     pure Zero
   
-public export
-test : String -> Either (ParseError (TokenData ExpressionToken))
+export
+runParser : String -> Either (ParseError (TokenData ExpressionToken))
                 (AST, List (TokenData ExpressionToken))
-test s = parse expr (fst (lex exprTokens s))
+runParser s = parse expr (fst (lex exprTokens s))

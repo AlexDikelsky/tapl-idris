@@ -94,7 +94,6 @@ mutual
     <|> boolLiteral
     <|> parenEvaluation
 
-export
 Show (ParseError token) where 
    show (Error s l) = s 
 
