@@ -57,9 +57,11 @@
 ;; This line defines `arith-command-line`.
 (define-xsmith-interface-functions
   [arith]
-  #:comment-wrap (λ (lines)
-                   (string-join
-                    (map (λ (x) (format "// ~a" x)) lines)
-                    "\n")))
- 
-(module+ main (arith-command-line))
+  #:comment-wrap (λ (lines) ""))
+
+(define run-n-times
+  (λ (n)
+    (for ([i (in-range n)])
+      (arith-command-line))))
+             
+(module+ main (run-n-times 15))
