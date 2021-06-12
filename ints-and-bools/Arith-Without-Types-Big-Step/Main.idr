@@ -43,4 +43,5 @@ main = do
   putStrLn $ show $ runProgram "if 0 then 0 else (iszero (pred (iszero 0)))"
   putStrLn $ show $ runProgram "(pred (if 0 then (iszero 0) else (if (pred 0) then (if 0 then 0 else 0) else (pred 0))))"
   putStrLn $ show $ runProgram "((if true then (iszero 0) else (if (pred 0) then (if 0 then 0 else 0) else (pred 0))))"
+
   putStrLn "Done"
