@@ -51,7 +51,7 @@ mutual
   term : Rule (AST String)
   term = do
     name <- nameLiteral
-    pure (Term name)
+    pure (Term name 0)
 
   absExpr : Rule (AST String)
   absExpr = do

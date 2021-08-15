@@ -5,7 +5,7 @@ import Generics.Derive
 
 public export
 data AST a =
-    Term a
+    Term a Nat
   | Abs a (AST a)
   | App (AST a) (AST a)
 
@@ -33,6 +33,6 @@ Show ExpressionToken where
 
 export
 (Show t) => Show (AST t) where
-  show (Datatypes.Term a) = "{" ++ show a ++ "}"
+  show (Datatypes.Term a _) = show a
   show (Abs var_name a) = "(lambda " ++ (show var_name) ++ "." ++ (show a) ++ ")"
   show (App a b) = "[" ++ (show a) ++ " " ++  (show b) ++ "]"
